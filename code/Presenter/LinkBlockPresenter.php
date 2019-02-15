@@ -61,7 +61,7 @@ class LinkBlockPresenter
     {
         return array(
             'id' => (int) $cmsBlock->id,
-            'title' => $cmsBlock->name[(int) $this->language->id],
+            'title' => $cmsBlock->name[(int) $this->language->id] . 'test',
             'hook' => (new \Hook((int) $cmsBlock->id_hook))->name,
             'position' => $cmsBlock->position,
             'links' => $this->makeLinks($cmsBlock->content, $cmsBlock->custom_content),
