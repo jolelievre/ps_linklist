@@ -14,7 +14,7 @@
   },
   "autoload": {
     "psr-4": {
-      "PrestaShop\\Module\\LinkList\\": "src/"
+      "PrestaShop\\Module\\LinkList\\": "code/"
     },
     "classmap": ["ps_linklist.php"],
     "exclude-from-classmap": []
