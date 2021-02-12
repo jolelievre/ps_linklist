@@ -34,11 +34,6 @@ use PrestaShop\PrestaShop\Core\ConstraintValidator\Constraints\DefaultLanguage;
 class LinkBlockType extends TranslatorAwareType
 {
     /**
-     * @var TranslatorInterface
-     */
-    private $translator;
-
-    /**
      * @var array
      */
     private $hookChoices;
@@ -89,7 +84,6 @@ class LinkBlockType extends TranslatorAwareType
         $this->productPageChoices = $productPageChoices;
         $this->staticPageChoices = $staticPageChoices;
         $this->categoryChoices = $categoryChoices;
-        $this->translator = $translator;
     }
 
     /**
@@ -110,7 +104,7 @@ class LinkBlockType extends TranslatorAwareType
                     'constraints' => [
                         new Length([
                             'max' => 40,
-                            'maxMessage' => $this->translator->trans(
+                            'maxMessage' => $this->trans(
                                 'Name of the block cannot be longer than %limit% characters',
                                 [
                                     '%limit%' => 40
