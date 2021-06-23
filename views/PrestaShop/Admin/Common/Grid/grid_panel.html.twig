@@ -23,7 +23,7 @@
 
 <div class="card js-grid-panel" id="{{ grid.id }}_grid_panel" data-hook-name="{{ grid.name|split(' ')|first }}">
   {% block grid_panel_header %}
-      {% if displayName is not sameas(false) %}
+      {% if displayName is not same as(false) %}
           <div class="card-header js-grid-header">
             <h3 class="d-inline-block card-header-title">
               {{ grid.name }} ({{ grid.data.records_total }})
