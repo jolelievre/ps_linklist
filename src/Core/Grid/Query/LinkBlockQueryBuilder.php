@@ -48,6 +48,7 @@ final class LinkBlockQueryBuilder extends AbstractDoctrineQueryBuilder
             lbs.position as position,
             GROUP_CONCAT(s.name SEPARATOR ", ") as shop_name
             ')
+            ->groupBy('lb.id_link_block')
             ->orderBy(
                 $searchCriteria->getOrderBy(),
                 $searchCriteria->getOrderWay()
@@ -92,8 +93,7 @@ final class LinkBlockQueryBuilder extends AbstractDoctrineQueryBuilder
             ->innerJoin('lb', $this->dbPrefix . 'link_block_lang', 'lbl', 'lb.id_link_block = lbl.id_link_block')
             ->leftJoin('lb', $this->dbPrefix . 'link_block_shop', 'lbs', 'lb.id_link_block = lbs.id_link_block')
             ->leftJoin('lb', $this->dbPrefix . 'hook', 'h', 'lb.id_hook = h.id_hook')
-            ->leftJoin('lb', $this->dbPrefix . 'shop', 's', 's.id_shop = lbs.id_shop')
-            ->groupBy('lb.id_link_block');
+            ->leftJoin('lb', $this->dbPrefix . 'shop', 's', 's.id_shop = lbs.id_shop');
 
         foreach ($filters as $name => $value) {
             if ('id_lang' === $name) {

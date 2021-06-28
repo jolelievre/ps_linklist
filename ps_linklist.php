@@ -71,7 +71,7 @@ class Ps_Linklist extends Module implements WidgetInterface
     {
         $this->name = 'ps_linklist';
         $this->author = 'PrestaShop';
-        $this->version = '5.0.2';
+        $this->version = '5.0.3';
         $this->need_instance = 0;
         $this->tab = 'front_office_features';
 
