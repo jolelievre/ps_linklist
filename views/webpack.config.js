@@ -72,7 +72,17 @@ const config = {
                         ]
                     }
                 }]
-            }
+            },
+            {
+              test: /\.ts?$/,
+              include: path.resolve(__dirname, '../../../admin-dev/themes/new-theme/js'),
+              loader: 'esbuild-loader',
+              options: {
+                loader: 'ts',
+                target: 'es2015',
+              },
+              exclude: /node_modules/,
+            },
         ]
     },
     plugins: []
