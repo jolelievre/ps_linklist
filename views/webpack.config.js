@@ -51,7 +51,7 @@ const config = {
         rules: [
             {
                 test: /\.js$/,
-                include: path.resolve(__dirname, 'js'),
+                include: path.resolve(__dirname, '../js'),
                 use: [{
                     loader: 'babel-loader',
                     options: {
