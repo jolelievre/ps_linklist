@@ -41,7 +41,7 @@ const config = {
     },
     //devtool: 'source-map', // uncomment me to build source maps (really slow)
     resolve: {
-        extensions: ['.js'],
+        extensions: ['.js', '.ts'],
         alias: {
             '@app': psAppDir,
             '@components': psComponentsDir,
