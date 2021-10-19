@@ -62,18 +62,6 @@ const config = {
                 }]
             },
             {
-                test: /\.js$/,
-                include: path.resolve(__dirname, '../../../admin-dev/themes/new-theme/js'),
-                use: [{
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            ['es2015', { modules: false }]
-                        ]
-                    }
-                }]
-            },
-            {
               test: /\.ts?$/,
               include: path.resolve(__dirname, '../../../admin-dev/themes/new-theme/js'),
               loader: 'esbuild-loader',
