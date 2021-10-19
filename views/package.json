@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "build": "webpack --progress --stats-error-details",
-    "watch": "webpack --progress --colors --debug --display-chunks --watch"
+    "watch": "webpack --progress --watch --mode=development"
   },
   "author": "PrestaShop",
   "license": "AFL-3.0",
