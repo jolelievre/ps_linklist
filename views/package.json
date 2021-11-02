@@ -3,8 +3,8 @@
   "version": "3.0.4",
   "description": "",
   "scripts": {
-    "build": "NODE_ENV=production webpack --progress --colors --debug --display-chunks",
-    "watch": "webpack --progress --colors --debug --display-chunks --watch"
+    "build": "webpack --progress --stats-error-details",
+    "watch": "webpack --progress --watch --mode=development"
   },
   "author": "PrestaShop",
   "license": "AFL-3.0",
@@ -16,6 +16,8 @@
     "babel-preset-stage-2": "^6.22.0",
     "path": "^0.12.7",
     "uglify-save-license": "^0.4.1",
-    "webpack": "^2.7.0"
+    "webpack": "^5.53.0",
+    "esbuild-loader": "^2.15.1",
+    "webpack-cli": "^4.7.0"
   }
 }

@@ -41,7 +41,7 @@ const config = {
     },
     //devtool: 'source-map', // uncomment me to build source maps (really slow)
     resolve: {
-        extensions: ['.js'],
+        extensions: ['.js', '.ts'],
         alias: {
             '@app': psAppDir,
             '@components': psComponentsDir,
@@ -51,7 +51,7 @@ const config = {
         rules: [
             {
                 test: /\.js$/,
-                include: path.resolve(__dirname, 'js'),
+                include: path.resolve(__dirname, '../js'),
                 use: [{
                     loader: 'babel-loader',
                     options: {
@@ -62,17 +62,15 @@ const config = {
                 }]
             },
             {
-                test: /\.js$/,
-                include: path.resolve(__dirname, '../../../admin-dev/themes/new-theme/js'),
-                use: [{
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            ['es2015', { modules: false }]
-                        ]
-                    }
-                }]
-            }
+              test: /\.ts?$/,
+              include: path.resolve(__dirname, '../../../admin-dev/themes/new-theme/js'),
+              loader: 'esbuild-loader',
+              options: {
+                loader: 'ts',
+                target: 'es2015',
+              },
+              exclude: /node_modules/,
+            },
         ]
     },
     plugins: []
