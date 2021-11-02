@@ -3,7 +3,7 @@
   "version": "3.0.4",
   "description": "",
   "scripts": {
-    "build": "webpack --progress --stats-error-details",
+    "build": "webpack --progress --stats-error-details --mode=production",
     "watch": "webpack --progress --watch --mode=development"
   },
   "author": "PrestaShop",
