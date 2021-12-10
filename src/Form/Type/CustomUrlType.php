@@ -23,6 +23,7 @@ namespace PrestaShop\Module\LinkList\Form\Type;
 use PrestaShopBundle\Form\Admin\Type\TranslatorAwareType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class CustomUrlType extends TranslatorAwareType
@@ -53,8 +54,10 @@ class CustomUrlType extends TranslatorAwareType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $pattern = str_replace('(%s):', '(?:(%s):)?', static::PATTERN); // see https://github.com/symfony/validator/blob/4.4/Constraints/UrlValidator.php#L69
-        $pattern = sprintf($pattern, implode('|', ['http', 'https']));
+        if (version_compare(Kernel::VERSION, '4.4') < 0) {
+            $pattern = str_replace('(%s):', '(?:(%s):)?', static::PATTERN); // see https://github.com/symfony/validator/blob/4.4/Constraints/UrlValidator.php#L69
+            $pattern = sprintf($pattern, implode('|', ['http', 'https']));
+        }
         $builder
             ->add('title', TextType::class, [
                 'label' => $this->trans('Title', 'Modules.Linklist.Admin'),
@@ -63,9 +66,11 @@ class CustomUrlType extends TranslatorAwareType
             ->add('url', TextType::class, [
                 'label' => $this->trans('URL', 'Modules.Linklist.Admin'),
                 'required' => true,
-                // Regex adapted from src/Symfony/Component/Validator/Constraints/UrlValidator.php (symfony 3.4)
-                // In symfony 4.4 this would be as simple as `new Assert\Url(['relativeProtocol' => true])`
-                'constraints' => [new Assert\Regex(['pattern' => $pattern])],
+                'constraints' => [
+                    version_compare(Kernel::VERSION, '4.4') < 0
+                        ? new Assert\Regex(['pattern' => $pattern])
+                        : new Assert\Url(['relativeProtocol' => true])
+                ],
             ])
         ;
     }
