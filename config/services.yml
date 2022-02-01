@@ -12,7 +12,7 @@ services:
     arguments:
       $connection: '@doctrine.dbal.default_connection'
       $dbPrefix: '%database_prefix%'
-      $languages: '@=service("prestashop.adapter.legacy.context").getLanguages(true, service("prestashop.adapter.shop.context").getContextShopID())'
+      $languages: '@=service("prestashop.adapter.legacy.context").getLanguages(false, service("prestashop.adapter.shop.context").getContextShopID())'
       $translator: '@translator'
       $isMultiStoreUsed: '@=service("prestashop.adapter.feature.multistore").isUsed()'
       $multiStoreContext: '@prestashop.adapter.shop.context'
@@ -60,7 +60,7 @@ services:
       $repository: '@prestashop.module.link_block.repository'
       $cache: '@prestashop.module.link_block.cache'
       $moduleRepository: '@prestashop.core.admin.module.repository'
-      $languages: '@=service("prestashop.adapter.legacy.context").getLanguages(true, service("prestashop.adapter.shop.context").getContextShopID())'
+      $languages: '@=service("prestashop.adapter.legacy.context").getLanguages(false, service("prestashop.adapter.shop.context").getContextShopID())'
       $shopContext: '@prestashop.adapter.shop.context'
       $configuration: '@prestashop.adapter.legacy.configuration'
 
