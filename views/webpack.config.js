@@ -40,11 +40,7 @@ let config = {
         alias: {
           '@PSTypes': path.resolve(__dirname, '../../../admin-dev/themes/new-theme/js/types'),
           '@components': path.resolve(__dirname, '../../../admin-dev/themes/new-theme/js/components'),
-          '@app': path.resolve(__dirname, '../../../admin-dev/themes/new-theme/js/app'),
-          '@PSJs': path.resolve(
-            __dirname,
-            '../../../admin-dev/themes/new-theme/js',
-          ),
+          '@app': path.resolve(__dirname, '../../../admin-dev/themes/new-theme/js/app')
         }
     },
     module: {
