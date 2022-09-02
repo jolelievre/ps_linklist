@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
@@ -18,23 +19,35 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\LinkList\Cache;
+namespace PrestaShop\Module\LinkList\Filter;
 
-use Module;
-use Ps_Linklist;
-
-/**
- * Class LegacyBlockCache.
- */
-final class LegacyLinkBlockCache implements LinkBlockCacheInterface
+class LinkFilter
 {
     /**
-     * {@inheritdoc}
+     * @var RouteFilterInterface[]
      */
-    public function clearModuleCache()
+    private $routeFilters = [];
+
+    public function __construct(array $routeFilters = [])
     {
-        /** @var Ps_Linklist $module */
-        $module = Module::getInstanceByName(Ps_Linklist::MODULE_NAME);
-        $module->_clearCache($module->templateFile);
+        $this->addRouteFilter(...$routeFilters);
+    }
+
+    public function addRouteFilter(RouteFilterInterface ...$routeFilters): void
+    {
+        foreach ($routeFilters as $routeFilter) {
+            $this->routeFilters[] = $routeFilter;
+        }
+    }
+
+    public function isRouteEnabled(string $routeId): bool
+    {
+        foreach ($this->routeFilters as $filter) {
+            if ($filter->supports($routeId) && !$filter->isRouteEnabled($routeId)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

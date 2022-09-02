@@ -6,8 +6,10 @@ Give more visibility to your content/static pages (CMS, external pages, or else)
 
 ## Multistore compatibility
 
-This module is not compatible with the multistore :x: <br/>
-It means that its configuration applies for all stores.<br/>
+This module is compatible with the multistore :heavy_check_mark: <br/>
+It can be configured differently from one store to another.<br/>
+It can be configured quickly in the same way on all stores thanks to the all shops context or the group of shops.<br/>
+It can be activated on one store and deactivated on another
 
 ## Building assets
 

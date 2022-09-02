@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
@@ -18,23 +19,19 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
 
-namespace PrestaShop\Module\LinkList\Cache;
+namespace PrestaShop\Module\LinkList\Filter;
 
-use Module;
-use Ps_Linklist;
+use Configuration;
 
-/**
- * Class LegacyBlockCache.
- */
-final class LegacyLinkBlockCache implements LinkBlockCacheInterface
+class BestSalesRouteFilter implements RouteFilterInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function clearModuleCache()
+    public function supports(string $routeId): bool
     {
-        /** @var Ps_Linklist $module */
-        $module = Module::getInstanceByName(Ps_Linklist::MODULE_NAME);
-        $module->_clearCache($module->templateFile);
+        return 'best-sales' === $routeId;
+    }
+
+    public function isRouteEnabled(string $routeId): bool
+    {
+        return (bool) Configuration::get('PS_DISPLAY_BEST_SELLERS');
     }
 }

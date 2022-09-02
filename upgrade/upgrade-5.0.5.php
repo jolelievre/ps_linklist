@@ -17,24 +17,11 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
 
-namespace PrestaShop\Module\LinkList\Cache;
-
-use Module;
-use Ps_Linklist;
-
-/**
- * Class LegacyBlockCache.
- */
-final class LegacyLinkBlockCache implements LinkBlockCacheInterface
+function upgrade_module_5_0_5($object)
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function clearModuleCache()
-    {
-        /** @var Ps_Linklist $module */
-        $module = Module::getInstanceByName(Ps_Linklist::MODULE_NAME);
-        $module->_clearCache($module->templateFile);
-    }
+    return $object->registerHook('actionGeneralPageSave');
 }
