@@ -17,9 +17,13 @@
     "path": "^0.12.7",
     "resize-observer-polyfill": "^1.5.1",
     "terser-webpack-plugin": "^4.2.3",
-    "ts-loader": "^8.3.0",
+    "ts-loader": "^8.4.0",
+    "ts-node": "^10.9.1",
     "uglify-save-license": "^0.4.1",
     "webpack": "^4.46",
     "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "typescript": "^4.1.4"
   }
 }
