@@ -266,7 +266,7 @@ class Ps_Linklist extends Module implements WidgetInterface
                 'displayLeftColumn',
                 'displayLeftColumnProduct',
                 'displayRightColumn',
-                'displayRightColumnProduct'
+                'displayRightColumnProduct',
             ])
         ) {
             $template = $this->templateFileColumn;
