@@ -142,8 +142,7 @@ class Ps_Linklist extends Module implements WidgetInterface
         $dataLoadedWithSuccess = $dataLoadedWithSuccess
             && $this->registerHook('displayFooter')
             && $this->registerHook('actionUpdateLangAfter')
-            && $this->registerHook('actionGeneralPageSave')
-        ;
+            && $this->registerHook('actionGeneralPageSave');
         if ($dataLoadedWithSuccess) {
             return true;
         }
