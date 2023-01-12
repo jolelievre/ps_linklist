@@ -261,9 +261,14 @@ class Ps_Linklist extends Module implements WidgetInterface
     {
         $key = 'ps_linklist|' . $hookName;
 
-        if (   $hookName === 'displayLeftColumn' 
-            || $hookName === 'displayLeftColumnProduct' 
-            || $hookName === 'displayRightColumn') {
+        if (
+            in_array($hookName, [
+                'displayLeftColumn',
+                'displayLeftColumnProduct',
+                'displayRightColumn',
+                'displayRightColumnProduct'
+            ])
+        ) {
             $template = $this->templateFileColumn;
         } else {
             $template = $this->templateFile;
