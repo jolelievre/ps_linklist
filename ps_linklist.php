@@ -142,8 +142,7 @@ class Ps_Linklist extends Module implements WidgetInterface
         $dataLoadedWithSuccess = $dataLoadedWithSuccess
             && $this->registerHook('displayFooter')
             && $this->registerHook('actionUpdateLangAfter')
-            && $this->registerHook('actionGeneralPageSave')
-        ;
+            && $this->registerHook('actionGeneralPageSave');
         if ($dataLoadedWithSuccess) {
             return true;
         }
@@ -261,7 +260,14 @@ class Ps_Linklist extends Module implements WidgetInterface
     {
         $key = 'ps_linklist|' . $hookName;
 
-        if ($hookName === 'displayLeftColumn' || $hookName === 'displayRightColumn') {
+        if (
+            in_array($hookName, [
+                'displayLeftColumn',
+                'displayLeftColumnProduct',
+                'displayRightColumn',
+                'displayRightColumnProduct',
+            ])
+        ) {
             $template = $this->templateFileColumn;
         } else {
             $template = $this->templateFile;
