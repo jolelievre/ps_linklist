@@ -116,14 +116,14 @@ final class LinkBlockGridFactory
      */
     private function buildGridFactoryByHook(array $hook)
     {
-        $definitionFactory = new LinkBlockDefinitionFactory($hook, $this->shopContext);
+        $definitionFactory = new LinkBlockDefinitionFactory($hook, $this->shopContext, $this->hookDispatcher);
         $definitionFactory->setTranslator($this->translator);
-        $definitionFactory->setHookDispatcher($this->hookDispatcher);
 
         return new GridFactory(
             $definitionFactory,
             $this->dataFactory,
-            $this->filterFormFactory
+            $this->filterFormFactory,
+            $this->hookDispatcher
         );
     }
 }
