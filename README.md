@@ -4,6 +4,10 @@
 
 Give more visibility to your content/static pages (CMS, external pages, or else), where you want and when you want, to make your visitors feel like shopping on your store.
 
+## Compatibility
+
+PrestaShop: `8.1.0` or later
+
 ## Multistore compatibility
 
 This module is compatible with the multistore :heavy_check_mark: <br/>
