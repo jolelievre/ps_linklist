@@ -155,7 +155,7 @@ class Ps_Linklist extends Module implements WidgetInterface
     /**
      * @return bool
      *
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws \Doctrine\DBAL\Exception
      */
     private function createTables()
     {
@@ -174,7 +174,7 @@ class Ps_Linklist extends Module implements WidgetInterface
     /**
      * @return bool
      *
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws \Doctrine\DBAL\Exception
      */
     private function installFixtures()
     {
