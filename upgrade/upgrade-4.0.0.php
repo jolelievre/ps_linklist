@@ -21,7 +21,7 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-function upgrade_module_4_0($object)
+function upgrade_module_4_0_0($object)
 {
     $result = true;
     $result &= Db::getInstance()->execute('UPDATE `' . _DB_PREFIX_ . 'tab` SET `route_name` = "admin_link_block_list" WHERE `class_name` = "AdminLinkWidget"');
