@@ -21,7 +21,7 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-function upgrade_module_3_0($object)
+function upgrade_module_3_0_0($object)
 {
     Configuration::deleteByName('FOOTER_CMS');
     Configuration::deleteByName('FOOTER_BLOCK_ACTIVATION');
