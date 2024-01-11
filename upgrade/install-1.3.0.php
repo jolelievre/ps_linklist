@@ -21,13 +21,7 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-function upgrade_module_4_0($object)
+function upgrade_module_1_3_0($object)
 {
-    $result = true;
-    $result &= Db::getInstance()->execute('UPDATE `' . _DB_PREFIX_ . 'tab` SET `route_name` = "admin_link_block_list" WHERE `class_name` = "AdminLinkWidget"');
-    $result &= Db::getInstance()->execute('ALTER TABLE `' . _DB_PREFIX_ . 'link_block` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;');
-    $result &= Db::getInstance()->execute('ALTER TABLE `' . _DB_PREFIX_ . 'link_block_lang` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;');
-    $result &= Db::getInstance()->execute('ALTER TABLE `' . _DB_PREFIX_ . 'link_block_shop` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;');
-
-    return (bool) $result;
+    return $object->registerHook('actionObjectCmsUpdateAfter') && $object->registerHook('actionObjectCmsDeleteAfter');
 }

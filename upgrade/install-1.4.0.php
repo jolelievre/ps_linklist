@@ -21,7 +21,7 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-function upgrade_module_1_3($object)
+function upgrade_module_1_4_0($object)
 {
-    return $object->registerHook('actionObjectCmsUpdateAfter') && $object->registerHook('actionObjectCmsDeleteAfter');
+    return $object->registerHook('actionAdminStoresControllerUpdate_optionsAfter');
 }
