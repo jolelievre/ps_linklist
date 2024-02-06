@@ -271,7 +271,6 @@ class LinkBlockController extends FrameworkBundleAdminController
     protected function buildFiltersParamsByRequest(Request $request)
     {
         $filtersParams = array_merge(LinkBlockFilters::getDefaults(), $request->query->all());
-        $filtersParams['filters']['id_lang'] = $this->getContext()->language->id;
 
         return $filtersParams;
     }
