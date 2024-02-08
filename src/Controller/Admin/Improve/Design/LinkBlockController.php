@@ -192,7 +192,7 @@ class LinkBlockController extends FrameworkBundleAdminController
     public function updatePositionsAction(Request $request, $hookId)
     {
         $positionsData = [
-            'positions' => $request->request->get('positions', null),
+            'positions' => $request->request->all()['positions'],
             'parentId' => $hookId,
         ];
 
