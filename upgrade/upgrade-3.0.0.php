@@ -21,20 +21,18 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-function upgrade_module_5_0()
+function upgrade_module_3_0_0($object)
 {
-    $result = true;
-    $result &= Db::getInstance()->execute('ALTER TABLE `' . _DB_PREFIX_ . 'link_block_shop`  ADD COLUMN `position` int(10) unsigned NOT NULL DEFAULT 0');
-    // Delete blockcms data that are not used in previous version of this module
-    $result &= Db::getInstance()->execute('DELETE FROM `' . _DB_PREFIX_ . 'link_block_shop`');
+    Configuration::deleteByName('FOOTER_CMS');
+    Configuration::deleteByName('FOOTER_BLOCK_ACTIVATION');
+    Configuration::deleteByName('FOOTER_POWEREDBY');
+    Configuration::deleteByName('FOOTER_PRICE-DROP');
+    Configuration::deleteByName('FOOTER_NEW-PRODUCTS');
+    Configuration::deleteByName('FOOTER_BEST-SALES');
+    Configuration::deleteByName('FOOTER_CONTACT');
+    Configuration::deleteByName('FOOTER_SITEMAP');
 
-    foreach (Shop::getShops(true, null, true) as $shopId) {
-        $result &= Db::getInstance()->execute(
-            'INSERT INTO `' . _DB_PREFIX_ . 'link_block_shop` (`id_link_block`, `position`, `id_shop`)
-            SELECT `id_link_block`, `position`, ' . $shopId . ' FROM `' . _DB_PREFIX_ . 'link_block`
-            '
-        );
-    }
+    Db::getInstance()->execute('DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'cms_block_page`');
 
-    return (bool) $result;
+    return true;
 }
