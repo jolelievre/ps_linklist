@@ -27,7 +27,7 @@ use PrestaShop\Module\LinkList\Repository\LinkBlockRepository;
 use PrestaShop\PrestaShop\Core\Exception\DatabaseException;
 use PrestaShop\PrestaShop\Core\Form\FormHandlerInterface;
 use PrestaShopBundle\Controller\Admin\FrameworkBundleAdminController;
-use PrestaShopBundle\Security\Annotation\AdminSecurity;
+use PrestaShopBundle\Security\Attribute\AdminSecurity;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,15 +35,14 @@ use Symfony\Component\HttpFoundation\Response;
 class LinkBlockController extends FrameworkBundleAdminController
 {
     /**
-     * @AdminSecurity("is_granted('read', request.get('_legacy_controller'))", message="Access denied.")
-     *
      * @param Request $request
      *
      * @return Response
      */
+    #[AdminSecurity("is_granted('read', request.get('_legacy_controller'))", redirectRoute: 'admin_homepage')]
     public function listAction(Request $request)
     {
-        //Get hook list, then loop through hooks setting it in in the filter
+        //Get hook list, then loop through hooks setting it in the filter
         /** @var LinkBlockRepository $repository */
         $repository = $this->get('prestashop.module.link_block.repository');
         $hooks = $repository->getHooksWithLinks();
@@ -75,14 +74,13 @@ class LinkBlockController extends FrameworkBundleAdminController
     }
 
     /**
-     * @AdminSecurity("is_granted('create', request.get('_legacy_controller'))", message="Access denied.")
-     *
      * @param Request $request
      *
      * @return Response
      *
      * @throws \Exception
      */
+    #[AdminSecurity("is_granted('create', request.get('_legacy_controller'))", redirectRoute: 'admin_homepage')]
     public function createAction(Request $request)
     {
         $this->get('prestashop.module.link_block.form_provider')->setIdLinkBlock(null);
@@ -97,8 +95,6 @@ class LinkBlockController extends FrameworkBundleAdminController
     }
 
     /**
-     * @AdminSecurity("is_granted('update', request.get('_legacy_controller'))", message="Access denied.")
-     *
      * @param Request $request
      * @param int $linkBlockId
      *
@@ -106,6 +102,7 @@ class LinkBlockController extends FrameworkBundleAdminController
      *
      * @throws \Exception
      */
+    #[AdminSecurity("is_granted('update', request.get('_legacy_controller'))", redirectRoute: 'admin_homepage')]
     public function editAction(Request $request, $linkBlockId)
     {
         $this->get('prestashop.module.link_block.form_provider')->setIdLinkBlock($linkBlockId);
@@ -120,22 +117,19 @@ class LinkBlockController extends FrameworkBundleAdminController
     }
 
     /**
-     * @AdminSecurity("is_granted('create', request.get('_legacy_controller'))", message="Access denied.")
-     *
      * @param Request $request
      *
      * @return RedirectResponse|Response
      *
      * @throws \Exception
      */
+    #[AdminSecurity("is_granted('create', request.get('_legacy_controller'))", redirectRoute: 'admin_homepage')]
     public function createProcessAction(Request $request)
     {
         return $this->processForm($request, 'Successful creation.');
     }
 
     /**
-     * @AdminSecurity("is_granted('update', request.get('_legacy_controller'))", message="Access denied.")
-     *
      * @param Request $request
      * @param int $linkBlockId
      *
@@ -143,18 +137,18 @@ class LinkBlockController extends FrameworkBundleAdminController
      *
      * @throws \Exception
      */
+    #[AdminSecurity("is_granted('update', request.get('_legacy_controller'))", redirectRoute: 'admin_homepage')]
     public function editProcessAction(Request $request, $linkBlockId)
     {
         return $this->processForm($request, 'Successful update.', $linkBlockId);
     }
 
     /**
-     * @AdminSecurity("is_granted('delete', request.get('_legacy_controller'))", message="Access denied.")
-     *
      * @param int $linkBlockId
      *
      * @return RedirectResponse
      */
+    #[AdminSecurity("is_granted('delete', request.get('_legacy_controller'))", redirectRoute: 'admin_homepage')]
     public function deleteAction($linkBlockId)
     {
         $repository = $this->get('prestashop.module.link_block.repository');
@@ -180,8 +174,6 @@ class LinkBlockController extends FrameworkBundleAdminController
     }
 
     /**
-     * @AdminSecurity("is_granted('update', request.get('_legacy_controller'))", message="Access denied.")
-     *
      * @param Request $request
      * @param int $hookId
      *
@@ -189,6 +181,7 @@ class LinkBlockController extends FrameworkBundleAdminController
      *
      * @return RedirectResponse
      */
+    #[AdminSecurity("is_granted('update', request.get('_legacy_controller'))", redirectRoute: 'admin_homepage')]
     public function updatePositionsAction(Request $request, $hookId)
     {
         $positionsData = [
